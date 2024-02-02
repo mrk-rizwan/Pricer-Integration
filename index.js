@@ -5,96 +5,6 @@ const bodyParser = require('body-parser');
 
 const app = express();
 const port = 3000; // Change this to your desired port
-const data = {
-    "admin_graphql_api_id": "gid:\/\/shopify\/Product\/8691613434198",
-    "body_html": "",
-    "created_at": "2024-01-22T12:52:11+01:00",
-    "handle": "altamura-marmor",
-    "id": 8691613434198,
-    "product_type": "",
-    "published_at": "2024-01-22T12:52:11+01:00",
-    "template_suffix": null,
-    "title": "Altamura Marmor",
-    "updated_at": "2024-01-30T21:20:33+01:00",
-    "vendor": "TAU",
-    "status": "active",
-    "published_scope": "global",
-    "tags": "badrum klinker, granitkeramik klinker, Grånyanserat klinker, kampanj, Keramikmosaik, Klinker, marmorerat klinker, Mosaik",
-    "variants": [{
-        "admin_graphql_api_id": "gid:\/\/shopify\/ProductVariant\/47540442890582",
-        "barcode": "",
-        "compare_at_price": "1876.05",
-        "created_at": "2024-01-22T12:52:11+01:00",
-        "fulfillment_service": "manual",
-        "id": 47540442890582,
-        "inventory_management": "shopify",
-        "inventory_policy": "continue",
-        "position": 1,
-        "price": "985.05",
-        "product_id": 8691613434198,
-        "sku": "Tau-AltGMMos",
-        "taxable": true,
-        "title": "Gray \/ 7x7cm \/ Matt",
-        "updated_at": "2024-01-26T11:49:45+01:00",
-        "option1": "Gray",
-        "option2": "7x7cm",
-        "option3": "Matt",
-        "grams": 22000,
-        "image_id": 53276025913686,
-        "weight": 22.0,
-        "weight_unit": "kg",
-        "inventory_item_id": 49640155906390,
-        "inventory_quantity": 20,
-        "old_inventory_quantity": 20,
-        "requires_shipping": true
-    }, {
-        "admin_graphql_api_id": "gid:\/\/shopify\/ProductVariant\/47540442956118",
-        "barcode": "",
-        "compare_at_price": "1876.05",
-        "created_at": "2024-01-22T12:52:11+01:00",
-        "fulfillment_service": "manual",
-        "id": 47540442956118,
-        "inventory_management": "shopify",
-        "inventory_policy": "continue",
-        "position": 2,
-        "price": "985.05",
-        "product_id": 8691613434198,
-        "sku": "Tau-AltGBMos",
-        "taxable": true,
-        "title": "Gray \/ 7x7cm \/ Blank",
-        "updated_at": "2024-01-26T11:49:45+01:00",
-        "option1": "Gray",
-        "option2": "7x7cm",
-        "option3": "Blank",
-        "grams": 22000,
-        "image_id": 53276025913686,
-        "weight": 22.0,
-        "weight_unit": "kg",
-        "inventory_item_id": 49640155971926,
-        "inventory_quantity": 20,
-        "old_inventory_quantity": 20,
-        "requires_shipping": true
-    }],
-    "options": [{
-        "name": "Color",
-        "id": 11317421211990,
-        "product_id": 8691613434198,
-        "position": 1,
-        "values": ["Gray", "Pearl", "Silver", "Sample"]
-    }, {
-        "name": "Storlek",
-        "id": 11317421244758,
-        "product_id": 8691613434198,
-        "position": 2,
-        "values": ["7x7cm", "30x60cm", "60x60cm", "Sample"]
-    }, {
-        "name": "Yta",
-        "id": 11317421277526,
-        "product_id": 8691613434198,
-        "position": 3,
-        "values": ["Matt", "Blank", "Sample"]
-    }]
-};
 // Replace these with your actual credentials and URLs
 const customerName = 'kakelgiganten';
 const username = 'api';
@@ -216,8 +126,8 @@ async function updatePricerItems(items) {
 // Route to handle product updates
 app.post('/productUpdated', async (req, res) => {
   try {
-    // const webhookData = req.body;
-    const webhookData = data;
+    const webhookData = req.body;
+    // const webhookData = data;
     const pricerItems = await preparePricerUpdateData(webhookData);
     await updatePricerItems(pricerItems);
     res.status(200).send(pricerItems);
