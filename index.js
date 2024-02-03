@@ -136,7 +136,11 @@ app.post('/productUpdated', async (req, res) => {
     res.status(500).send('Internal Server Error');
   }
 });
-
+app.get('/', async (req, res) => {
+  return res.status(200).json({
+    message: "All Working!"
+  })
+})
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
