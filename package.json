@@ -1,14 +1,14 @@
 {
   "name": "pricier",
   "version": "1.0.0",
-  "description": "",
+  "description": "App to manage pricer updates",
   "main": "index.js",
   "start": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "index.js"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["Pricier"],
+  "author": "MRK",
   "license": "ISC",
   "dependencies": {
     "axios": "^1.6.7",
