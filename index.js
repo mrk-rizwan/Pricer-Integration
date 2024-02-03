@@ -1,15 +1,17 @@
 require('dotenv').config();
 const express = require('express');
 const axios = require('axios');
+const bodyParser = require('body-parser');
 
 const app = express();
-const port = 3000; // Change this to your desired port
+const port = process.env.PORT || 3000; // Change this to your desired port
 // Replace these with your actual credentials and URLs
 const customerName = 'kakelgiganten';
 const username = 'api';
 const password = '#4rfv-5TGB#';
 const storeUuid = 'kakelgiganten-reference-store';
 
+app.use(bodyParser.json());
 async function fetchVariantMetafields(variantId, productId) {
     const url = `https://${process.env.apiKey}:${process.env.password}@${process.env.shopName}.myshopify.com/admin/api/${process.env.SHOPIFY_API_VERSION}/products/${productId}/variants/${variantId}/metafields.json`;
     try {
