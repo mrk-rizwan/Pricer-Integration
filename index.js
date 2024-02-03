@@ -25,6 +25,21 @@ async function fetchVariantMetafields(variantId, productId) {
   
   // Function to map Shopify variant and metafields to Pricer fields
 // Function to map Shopify variant and metafields to Pricer fields
+function getInventoryStatus(variant) {
+  let statusText = '';
+
+  if (variant.inventory_quantity > 0 || variant.inventory_management === null) {
+      statusText = `Lagervara ${variant.inventory_quantity}st`;
+  } 
+  else if (variant.inventory_quantity < 1 && variant.inventory_policy === 'continue' && variant.metafields.custom.out_of_stock.value === '') {
+      statusText = 'Beställningsvara';
+  } 
+  else if (variant.inventory_quantity < 1 && variant.metafields.custom.out_of_stock.value) {
+      statusText = 'Out of Stock';
+  }
+
+  return statusText;
+}
 async function mapShopifyDataToPricer(variant, product) {
   const metafields = await fetchVariantMetafields(variant.id, product.id);
 
@@ -63,12 +78,12 @@ async function mapShopifyDataToPricer(variant, product) {
       FROSTSAFE: findMetafield('frosts_ker') === 'Ja' ? 'Ja' : 'Nej',
       ITEM_SKU: variant.sku,
       M2_PAKET: m2area,
-      ORDER_ITEM: variant.inventory_quantity.toString(),
+      ORDER_ITEM: getInventoryStatus(variant).toString(),
       ORD_PRICE: variant.compare_at_price,
       PRICE_UNIT: 'kr/m2',
       QUANTITY: findMetafield('antal_per_paket'),
       QUANTITY_M2: m2area,
-      STOCK: variant.inventory_quantity.toString(),
+      STOCK: getInventoryStatus(variant).toString(),
       SURFACE: findMetafield('yta'),
       THICKNESS: findMetafield('tjocklek_mm_'),
       USED_FOR: findMetafield('anv_ndningsomr_de'),

@@ -7,7 +7,9 @@
   "scripts": {
     "start": "index.js"
   },
-  "keywords": ["Pricier"],
+  "keywords": [
+    "Pricier"
+  ],
   "author": "MRK",
   "license": "ISC",
   "dependencies": {
