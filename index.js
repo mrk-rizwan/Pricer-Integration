@@ -31,7 +31,7 @@ function getInventoryStatus(variant) {
   if (variant.inventory_quantity > 0 || variant.inventory_management === null) {
       statusText = `Lagervara ${variant.inventory_quantity}st`;
   } 
-  else if (variant.inventory_quantity < 1 && variant.inventory_policy === 'continue' && variant.metafields.custom.out_of_stock.value === '') {
+  else if (variant.inventory_quantity < 1 && variant.inventory_policy === 'continue') {
       statusText = 'Beställningsvara';
   } 
   else if (variant.inventory_quantity < 1 && variant.metafields.custom.out_of_stock.value) {
@@ -130,7 +130,7 @@ async function updatePricerItems(items) {
       }
     });
 
-    console.log("updatePricerItems Response:", response.data);
+    console.log("updatePricerItems Response:", response.data,items);
     return true;
   } catch (error) {
     console.error('Error in updatePricerItems:', error.message);
