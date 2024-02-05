@@ -66,10 +66,14 @@ async function mapShopifyDataToPricer(variant, product) {
   };
   const productTitle = product.title + ' ' + variant.title.replace(/\//g, '');
   const m2area = parseFloat(findMetafield('kvm_i_paket'));
+  if (variant.compare_at_price > variant.price) {
+    price = variant.price;
+  }else
+  price = null;
   return {
     itemId: variant.sku.toString(),
     itemName: productTitle,
-    price: variant.price,
+    price: price,
     properties: {
       DIMENSIONS: findMetafield('nominellt_m_tt_cm_'),
       DURABILITY: findMetafield('varaktighet'),
