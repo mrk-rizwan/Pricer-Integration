@@ -79,7 +79,7 @@ async function mapShopifyDataToPricer(variant, product) {
       ITEM_SKU: variant.sku,
       M2_PAKET: m2area,
       ORDER_ITEM: variant.inventory_quantity.toString(),
-      ORD_PRICE: variant.compare_at_price,
+      ORD_PRICE: variant.compare_at_price || variant.price,
       PRICE_UNIT: 'kr/m2',
       QUANTITY: getInventoryStatus(variant).toString(),
       QUANTITY_M2: m2area,
