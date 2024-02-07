@@ -46,7 +46,7 @@ async function mapShopifyDataToPricer(variant, product) {
   // Extracting and mapping metafields to corresponding Pricer fields
   const findMetafield = (key) => {
     const metafield = metafields.find(m => m.key === key);
-    if (!metafield) return null;
+    if (!metafield) return blank;
 
     try {
       // Attempt to parse the metafield value as JSON
@@ -69,7 +69,7 @@ async function mapShopifyDataToPricer(variant, product) {
   if (variant.compare_at_price > variant.price) {
     price = variant.price;
   }else
-  price = null;
+  price = blank;
   if(findMetafield('priceUnit') == null || findMetafield('priceUnit') == '') {
     var priceUnit = 'kr/m2';
   }else
@@ -87,6 +87,7 @@ async function mapShopifyDataToPricer(variant, product) {
       ITEM_SKU: variant.sku,
       M2_PAKET: m2area,
       ORDER_ITEM: variant.inventory_quantity.toString(),
+      M2_PACKET: blank,
       ORD_PRICE: variant.compare_at_price || variant.price,
       PRICE_UNIT:  priceUnit,
       QUANTITY: getInventoryStatus(variant).toString(),
