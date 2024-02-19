@@ -13,17 +13,15 @@ const storeUuid = 'kakelgiganten-reference-store';
 
 app.use(bodyParser.json());
 async function fetchVariantMetafields(variantId, productId) {
-    const url = `https://${process.env.apiKey}:${process.env.password}@${process.env.shopName}.myshopify.com/admin/api/${process.env.SHOPIFY_API_VERSION}/products/${productId}/variants/${variantId}/metafields.json`;
-    try {
-      const response = await axios.get(url);
-      return response.data.metafields;
-    } catch (error) {
-      console.error('Error fetching variant metafields:', error);
-      throw error;
-    }
+  const url = `https://${process.env.apiKey}:${process.env.password}@${process.env.shopName}.myshopify.com/admin/api/${process.env.SHOPIFY_API_VERSION}/products/${productId}/variants/${variantId}/metafields.json`;
+  try {
+    const response = await axios.get(url);
+    return response.data.metafields;
+  } catch (error) {
+    console.error('Error fetching variant metafields:', error);
+    throw error;
   }
-  
-  // Function to map Shopify variant and metafields to Pricer fields
+}
 // Function to map Shopify variant and metafields to Pricer fields
 function getInventoryStatus(variant) {
   let statusText = '';
