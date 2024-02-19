@@ -4,6 +4,9 @@
   "description": "App to manage pricer updates",
   "main": "index.js",
   "start": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
   "keywords": [
     "Pricier"
   ],
