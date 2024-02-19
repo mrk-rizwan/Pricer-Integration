@@ -1,8 +1,7 @@
-require('dotenv').config();
 const express = require('express');
 const axios = require('axios');
 const bodyParser = require('body-parser');
-
+require('dotenv').config();
 const app = express();
 const port = process.env.PORT || 3000; // Change this to your desired port
 // Replace these with your actual credentials and URLs

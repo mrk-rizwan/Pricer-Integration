@@ -2,8 +2,6 @@
   "name": "pricier",
   "version": "1.0.0",
   "description": "App to manage pricer updates",
-  "main": "index.js",
-  "start": "index.js",
   "scripts": {
     "start": "index.js"
   },
